@@ -1932,7 +1932,9 @@
 
 
 <h1 id="microsoft-entra-hybrid-join-targeted-deployment">Microsoft Entra hybrid join targeted deployment</h1>
-<p>Ref. https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control</p>
+<p>เครื่องคอมพิวเตอร์ของค์กรส่วนใหญ่ ยัง join on-premises AD DS อยู่</p>
+<p>เราสามารถนำเขาไป join Entra ID โดยอัตโนมัติได้ด้วยการ enable Entra Hybrid Join ให้กับ device ทุกเครื่อง หรือ เริ่ม enable ให้แค่บางเครื่องก่อนก็ได้ </p>
+<p>จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control">Microsoft Entra hybrid join targeted deployment</a></p>
 <h2 id="1-create-a-pilot-device-group">1. Create a pilot device group</h2>
 <p>สร้าง device group สำหรับ pilot Entra Hybrid Join</p>
 <p><img alt="alt text" src="../image-3.png" /></p>
@@ -1940,9 +1942,9 @@
 <p>1. copy ค่า Tenant ID และ Tenant name</p>
 <p><img alt="alt text" src="../image.png" /></p>
 <p><img alt="alt text" src="../image-1.png" /></p>
-<p>2. สร้าง GPO settings ตาม https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control#configure-client-side-registry-setting-for-scp</p>
+<p>2. สร้าง GPO settings</p>
 <p><img alt="alt text" src="../image-2.png" /></p>
-<p>3.\ ที่ Security Filtering</p>
+<p>3. ที่ Security Filtering</p>
 <ul>
 <li>ลบ Authenticated Users ออก</li>
 <li>เพิ่ม pilot device group เข้าไป</li>
@@ -1975,7 +1977,7 @@
 <p>3. Restart เครื่ออง client</p>
 <p><img alt="alt text" src="../image-16.png" /></p>
 <h3 id="42-trigger-1">4.2 Trigger #1</h3>
-<p>1.\ Automatic-Device-Join task จะทำงานทุกๆ 1 ชั่วโมง</p>
+<p>1. Automatic-Device-Join task จะทำงานทุกๆ 1 ชั่วโมง</p>
 <p>หรือเมื่อมี user sign in เข้าเครื่อง</p>
 <p>ซึ่งเราอยากให้กระบวนการ Entra Hybrid Join เริ่มเลย เราก็ sign in เข้าเครื่อง</p>
 <p><img alt="alt text" src="../image-17.png" /></p>
@@ -1988,13 +1990,13 @@
 <p><img alt="alt text" src="../image-19.png" /></p>
 <p>ตอนนี้ client ถูก sync ขึ้นมาที่ Entra ID แล้ว</p>
 <p>แต่สถานะยังเป็น "Pending" ซึ่งเราจะต้องรอให้ Automatic-Device-Join task เข้ามาทำ authentication อีกครั้ง</p>
-<p><img alt="alt text" src="../image-20.png" /></p>
+<p><img alt="alt text" src="../image-28.png" /></p>
 <h3 id="43-trigger-2">4.3 Trigger #2</h3>
 <p>ถ้าเราไม่อยาก sign in ใหม่ หรือไม่อยากรอให้ task รันทุกๆ 1 ชั่วโมง</p>
 <p>ก็ลอง force Automatic-Device-Join task รันเองเลยก็ได้</p>
 <p><img alt="alt text" src="../image-21.png" /></p>
 <p>และ client จะเข้าไปทำ authentication กับ Entra ID อีกครั้ง แล้วเครื่องก็จะกลายเป็น Entra Hybrid joined device จนสมบูรณ์ครับ</p>
-<p><img alt="alt text" src="../image-22.png" /></p>
+<p><img alt="alt text" src="../image-27.png" /></p>
 <h3 id="44-test-sso">4.4 Test SSO</h3>
 <p>1. Sign out client</p>
 <p><img alt="alt text" src="../image-23.png" /></p>
