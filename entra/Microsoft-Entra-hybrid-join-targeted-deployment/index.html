@@ -1932,16 +1932,18 @@
 
 
 <h1 id="microsoft-entra-hybrid-join-targeted-deployment">Microsoft Entra hybrid join targeted deployment</h1>
-<p>เครื่องคอมพิวเตอร์ของค์กรส่วนใหญ่ ยัง join on-premises AD DS อยู่</p>
-<p>เราสามารถนำเขาไป join Entra ID โดยอัตโนมัติได้ด้วยการ enable Entra Hybrid Join ให้กับ device ทุกเครื่อง หรือ เริ่ม enable ให้แค่บางเครื่องก่อนก็ได้ </p>
 <p>จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control">Microsoft Entra hybrid join targeted deployment</a></p>
+<p>ในปัจจุบัน เครื่องคอมพิวเตอร์ส่วนใหญ่ยัง join on-premises AD DS อยู่</p>
+<p>เราสามารถนำเขาไป join Entra ID โดยอัตโนมัติได้ ด้วยการ enable Entra Hybrid Join ให้เขา</p>
+<p>เราสามารถ enable กับ device ทุกเครื่อง หรือ บางเครื่องก่อนก็ได้ </p>
+<p>ซึ่งเมื่อเครื่องกลายเป็น Entra Hybrid join device ใน Entra ID ผู้ใช้ที่ sign in เข้าเครื่องจะเข้าใช้งาน app </p>
 <h2 id="1-create-a-pilot-device-group">1. Create a pilot device group</h2>
 <p>สร้าง device group สำหรับ pilot Entra Hybrid Join</p>
-<p><img alt="alt text" src="../image-3.png" /></p>
+<p><img alt="alt text" src="../image-29.png" /></p>
 <h2 id="2-configure-gpo-settigs-to-enable-entra-hybrid-join-targeted-deployment">2. Configure GPO settigs to enable Entra Hybrid join targeted deployment</h2>
 <p>1. copy ค่า Tenant ID และ Tenant name</p>
-<p><img alt="alt text" src="../image.png" /></p>
-<p><img alt="alt text" src="../image-1.png" /></p>
+<p><img alt="alt text" src="../image-32.png" /></p>
+<p><img alt="alt text" src="../image-33.png" /></p>
 <p>2. สร้าง GPO settings</p>
 <p><img alt="alt text" src="../image-2.png" /></p>
 <p>3. ที่ Security Filtering</p>
@@ -1949,19 +1951,12 @@
 <li>ลบ Authenticated Users ออก</li>
 <li>เพิ่ม pilot device group เข้าไป</li>
 </ul>
-<p><img alt="alt text" src="../image-4.png" /></p>
+<p><img alt="alt text" src="../image-34.png" /></p>
 <p>ที่ tab Delegation, ให้สิทธิ์ Read กับ Authenticated Users</p>
-<p><img alt="alt text" src="../image-5.png" /></p>
+<p><img alt="alt text" src="../image-35.png" /></p>
 <blockquote>
 <p>หมายเหตุ: (Optional) หากไม่ต้องการ pilot หรือทำ targeted deployment เราสามารถรีรัน Entra Connect เพื่อสร้าง Service Connection Point (SCP) ลงใน Active Directory Domain Services (AD DS) เพื่อให้ computer ที่ join on-premises AD DS เห็นข้อมุลเกี่ยวกับ tenant แล้วเริ่มกระบวนการ Entra Hybrid Join ได้เลย แบบนี้นะครับ</p>
-<p><img alt="alt text" src="../image-8.png" /></p>
-<p><img alt="alt text" src="../image-9.png" /></p>
 <p><img alt="alt text" src="../image-10.png" /></p>
-<p><img alt="alt text" src="../image-11.png" /></p>
-<p><img alt="alt text" src="../image-12.png" /></p>
-<p>แต่ถ้าเราจะทำ Targeted deployment ก็ cancel กลับมาก่อน</p>
-<p><img alt="alt text" src="../image-13.png" />
-</p>
 </blockquote>
 <h2 id="3-configure-synchronization-scopes-to-sync-clients-to-entra-id">3. Configure synchronization scopes to sync clients to Entra ID</h2>
 <p>ให้เรารีรัน Entra Connect แล้วเลือก OU ที่มี device อยู่ เพื่อ sync device object ขึ้นไปยัง Entra ID</p>
@@ -1971,9 +1966,9 @@
 <p>เมื่อตั้งค่าทุกอย่างเรียบร้อยแล้ว เราก็มาลง pilot device เครื่องแรกกันนะครับ</p>
 <h3 id="41-prepare-and-restart-the-pilot-client">4.1 Prepare and restart the pilot client</h3>
 <p>1. ย้าย client มาอยู่ใน OU ที่ถูก configure ให้ sync ขึ้น Entra ID</p>
-<p><img alt="alt text" src="../image-14.png" /></p>
+<p><img alt="alt text" src="../image-31.png" /></p>
 <p>2. เพิ่ม client เข้าไปใน pilot device group (ที่ GPO Entra Hybrid Join apply เข้าหา)</p>
-<p><img alt="alt text" src="../image-15.png" /></p>
+<p><img alt="alt text" src="../image-30.png" /></p>
 <p>3. Restart เครื่ออง client</p>
 <p><img alt="alt text" src="../image-16.png" /></p>
 <h3 id="42-trigger-1">4.2 Trigger #1</h3>
