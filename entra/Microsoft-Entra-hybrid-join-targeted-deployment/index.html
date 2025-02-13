@@ -1227,6 +1227,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-create-a-pilot-device-group" class="md-nav__link">
     <span class="md-ellipsis">
       1. Create a pilot device group
@@ -1273,9 +1282,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-trigger-1" class="md-nav__link">
+  <a href="#42-wait-1" class="md-nav__link">
     <span class="md-ellipsis">
-      4.2 Trigger #1
+      4.2 Wait #1
     </span>
   </a>
   
@@ -1839,6 +1848,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-create-a-pilot-device-group" class="md-nav__link">
     <span class="md-ellipsis">
       1. Create a pilot device group
@@ -1885,9 +1903,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-trigger-1" class="md-nav__link">
+  <a href="#42-wait-1" class="md-nav__link">
     <span class="md-ellipsis">
-      4.2 Trigger #1
+      4.2 Wait #1
     </span>
   </a>
   
@@ -1932,48 +1950,55 @@
 
 
 <h1 id="microsoft-entra-hybrid-join-targeted-deployment">Microsoft Entra hybrid join targeted deployment</h1>
-<p>จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control">Microsoft Entra hybrid join targeted deployment</a></p>
-<p>ในปัจจุบัน เครื่องคอมพิวเตอร์ส่วนใหญ่ยัง join on-premises AD DS อยู่</p>
-<p>เราสามารถนำเขาไป join Entra ID โดยอัตโนมัติได้ ด้วยการ enable Entra Hybrid Join ให้เขา</p>
-<p>เราสามารถ enable กับ device ทุกเครื่อง หรือ บางเครื่องก่อนก็ได้ </p>
-<p>ซึ่งเมื่อเครื่องกลายเป็น Entra Hybrid join device ใน Entra ID ผู้ใช้ที่ sign in เข้าเครื่องจะเข้าใช้งาน app </p>
+<h2 id="overview">Overview</h2>
+<p>ปัจจุบัน เครื่องคอมพิวเตอร์ส่วนใหญ่ยัง join on-premises AD DS อยู่ เราสามารถนำเขาไป join Entra ID โดยอัตโนมัติได้ด้วยการ enable Entra Hybrid Join</p>
+<p>แต่เรามี 2 ทางเลือก</p>
+<ul>
+<li>
+<p>ทางเลือกแรก - รีรัน Entra Connect tool เพื่อสร้าง Service Connection Point (SCP) ให้ทุกเครื่องที่ join on-premises AD DS มองเห็น แล้ว device จะใช้ข้อมูล Tenant ID และ Tenant name เข้าไปทำ Entra Hybrid Join เข้า Entra ID 
+<img alt="alt text" src="../image-10.png" /></p>
+</li>
+<li>
+<p>ทางเลือกที่ 2 - ทำให้ device รู้จักกับ SCP แค่บางเครื่อง จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control">Microsoft Entra hybrid join targeted deployment</a> ผ่าน GPO settings</p>
+</li>
+</ul>
+<p>เมื่อ on-premises device มี identity ใน Entra ID จะได้รับประโยชน์จาก SSO, การเป็นสมาชิกของ device group, ใช้ทำ device-based authentication ใน Condtional Access, และอื่นๆ ต่อไป</p>
+<p>และเนื่องจากใน CSoG เราเน้นให้ทุกคนสามารถทำด้วยตัวเองได้ และไม่กระทบกับระบบที่ใช้งานอยู่เป็นวงกว้าง ดังนั้น ขั้นตอนด้านล่างนี้จึงเป็นของทางเลือกที่ 2 Targeted deployment นะครับ</p>
 <h2 id="1-create-a-pilot-device-group">1. Create a pilot device group</h2>
 <p>สร้าง device group สำหรับ pilot Entra Hybrid Join</p>
 <p><img alt="alt text" src="../image-29.png" /></p>
 <h2 id="2-configure-gpo-settigs-to-enable-entra-hybrid-join-targeted-deployment">2. Configure GPO settigs to enable Entra Hybrid join targeted deployment</h2>
-<p>1. copy ค่า Tenant ID และ Tenant name</p>
+<p>1. Copy ค่า Tenant ID และ Tenant name เพื่อนำไปใช้ตั้งค่า settings ใน GPO</p>
 <p><img alt="alt text" src="../image-32.png" /></p>
 <p><img alt="alt text" src="../image-33.png" /></p>
-<p>2. สร้าง GPO settings</p>
+<p>2. สร้าง GPO และตั้งค่า settings ตาม <a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control#configure-client-side-registry-setting-for-scp">
+Configure client-side registry setting for SCP</a></p>
 <p><img alt="alt text" src="../image-2.png" /></p>
 <p>3. ที่ Security Filtering</p>
 <ul>
 <li>ลบ Authenticated Users ออก</li>
-<li>เพิ่ม pilot device group เข้าไป</li>
+<li>แล้วเพิ่ม pilot device group เข้าไป</li>
 </ul>
 <p><img alt="alt text" src="../image-34.png" /></p>
 <p>ที่ tab Delegation, ให้สิทธิ์ Read กับ Authenticated Users</p>
 <p><img alt="alt text" src="../image-35.png" /></p>
-<blockquote>
-<p>หมายเหตุ: (Optional) หากไม่ต้องการ pilot หรือทำ targeted deployment เราสามารถรีรัน Entra Connect เพื่อสร้าง Service Connection Point (SCP) ลงใน Active Directory Domain Services (AD DS) เพื่อให้ computer ที่ join on-premises AD DS เห็นข้อมุลเกี่ยวกับ tenant แล้วเริ่มกระบวนการ Entra Hybrid Join ได้เลย แบบนี้นะครับ</p>
-<p><img alt="alt text" src="../image-10.png" /></p>
-</blockquote>
 <h2 id="3-configure-synchronization-scopes-to-sync-clients-to-entra-id">3. Configure synchronization scopes to sync clients to Entra ID</h2>
-<p>ให้เรารีรัน Entra Connect แล้วเลือก OU ที่มี device อยู่ เพื่อ sync device object ขึ้นไปยัง Entra ID</p>
+<p>รีรัน Entra Connect แล้วเลือก OU ที่มี device ที่ต้องการ sync ไปยัง Entra ID</p>
 <p><img alt="alt text" src="../image-6.png" /></p>
 <p><img alt="alt text" src="../image-7.png" /></p>
+<p>หลังจากตั้งค่าทุกอย่างเรียบร้อย เราก็ไปทดสอบ pilot device เครื่องแรกกันนะครับ</p>
 <h2 id="4-test-a-client">4. Test a client</h2>
-<p>เมื่อตั้งค่าทุกอย่างเรียบร้อยแล้ว เราก็มาลง pilot device เครื่องแรกกันนะครับ</p>
 <h3 id="41-prepare-and-restart-the-pilot-client">4.1 Prepare and restart the pilot client</h3>
-<p>1. ย้าย client มาอยู่ใน OU ที่ถูก configure ให้ sync ขึ้น Entra ID</p>
+<p>1. ย้าย client มาอยู่ใน OU ที่ถูก sync ขึ้น Entra ID</p>
 <p><img alt="alt text" src="../image-31.png" /></p>
-<p>2. เพิ่ม client เข้าไปใน pilot device group (ที่ GPO Entra Hybrid Join apply เข้าหา)</p>
+<p>2. เพิ่ม client เข้าไปเป็นสมาชิกของ pilot device group (ที่ GPO Entra Hybrid Join apply เข้าหา)</p>
 <p><img alt="alt text" src="../image-30.png" /></p>
-<p>3. Restart เครื่ออง client</p>
+<p>3. แล้ว restart เครื่อง client (device)</p>
 <p><img alt="alt text" src="../image-16.png" /></p>
-<h3 id="42-trigger-1">4.2 Trigger #1</h3>
-<p>1. Automatic-Device-Join task จะทำงานทุกๆ 1 ชั่วโมง</p>
-<p>หรือเมื่อมี user sign in เข้าเครื่อง</p>
+<h3 id="42-wait-1">4.2 Wait #1</h3>
+<p>1. Client ทุกเครื่องจะมี scheduled task ชื่อว่า Automatic-Device-Join อยู่</p>
+<p>Task จะทำงานทุกๆ 1 ชั่วโมง หรือเมื่อมี user sign in เข้าเครื่อง</p>
+<p>ดังนั้น เพียงแค่เรารอ (ไม่ต้อง sign in เข้า Windows ก็ได้) ก็จะมีเครื่องปรากฏใน Entra ID แต่ยัง้มี state เป็น Pending อยู่</p>
 <p>ซึ่งเราอยากให้กระบวนการ Entra Hybrid Join เริ่มเลย เราก็ sign in เข้าเครื่อง</p>
 <p><img alt="alt text" src="../image-17.png" /></p>
 <p>2. เมื่อ Automatic-Device-Join task ถูก trigger ให้ทำงานตอนที่ user sign in</p>
