@@ -1950,115 +1950,116 @@
 
 
 <h1 id="microsoft-entra-hybrid-join-targeted-deployment">Microsoft Entra hybrid join targeted deployment</h1>
-<p>ปัจจุบัน เครื่องคอมพิวเตอร์ส่วนใหญ่ยัง join on-premises AD DS อยู่ เราสามารถนำเขาไป join Entra ID โดยอัตโนมัติได้ด้วยการ enable Entra Hybrid Join</p>
+<p>ปัจจุบัน เครื่องคอมพิวเตอร์ส่วนใหญ่ยัง join on-premises AD DS อยู่ เราสามารถนำเขาไป join Entra ID โดยอัตโนมัติได้ด้วย enable Entra Hybrid Join</p>
 <p>แต่เรามี 2 ทางเลือก</p>
 <p><strong>ทางเลือกที่ 1</strong></p>
 <p>รีรัน Entra Connect เพื่อสร้าง Service Connection Point (SCP) ลงใน on-premises AD DS ให้ทุกเครื่องที่ join domain มองเห็น</p>
-<p>แล้ว device จะใช้ข้อมูล Tenant ID และ Tenant name จาก SCP เข้าไปทำ Entra Hybrid Join ต่อไป</p>
-<p><img alt="alt text" src="../image-36.png" /></p>
+<p>แล้ว device จะใช้ข้อมูล tenant จาก SCP เข้าไปทำ Entra Hybrid Join ต่อไป</p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-36.png" /></p>
 <p><strong>ทางเลือกที่ 2</strong></p>
-<p>ทำให้ device รู้จัก SCP แค่บางเครื่อง ผ่าน GPO settings จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control">Microsoft Entra hybrid join targeted deployment</a></p>
-<p>Entra Hybrid Join จะช่วยให้ on-premises device มี identity ใน Entra ID ได้รับประโยชน์จาก</p>
+<p>ทำให้ device แค่บางเครื่องรู้จักข้อมูลของ tenant ผ่าน GPO จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control">Microsoft Entra hybrid join targeted deployment</a></p>
+<p>Entra Hybrid Join จะช่วยให้เครื่องที่ join on-premises AD DS มี identity ใน Entra ID และได้รับประโยชน์จาก</p>
 <ul>
 <li>SSO</li>
-<li>สามารถเป็นสมาชิกของ device group เพื่อนำไป assign สิทธิ์อย่างอื่น ต่อได้</li>
+<li>สามารถเป็นสมาชิกของ device group เพื่อนำไป assign สิทธิ์อย่างอื่นต่อได้</li>
 <li>ใช้ทำ device-based authentication ใน Condtional Access</li>
-<li>และอื่นๆ</li>
+<li>และอื่นๆ เป็นต้น</li>
 </ul>
-<p>เป็นต้น</p>
 <p>และเนื่องจาก CSoG เราเน้นให้ทุกคนสามารถเริ่มต้นใช้งานบริการต่างๆ ด้วยตัวเองได้ โดยไม่กระทบกับระบบที่ใช้งานอยู่เป็นวงกว้าง</p>
 <p>ดังนั้น ในคู่มือนี้ จึงเป็นรายละเอียดของทางเลือกที่ 2 เพื่อทำ Entra Hybrid Join แบบ targeted deployment นะครับ</p>
 <h2 id="1-create-a-pilot-device-group">1. Create a pilot device group</h2>
 <p>สร้าง device group สำหรับ pilot Entra Hybrid Join</p>
-<p><img alt="alt text" src="../image-29.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-29.png" /></p>
 <h2 id="2-configure-gpo-settigs-to-enable-entra-hybrid-join-targeted-deployment">2. Configure GPO settigs to enable Entra Hybrid join targeted deployment</h2>
-<p>1. Copy ค่า Tenant ID และ Tenant name เพื่อนำไปใช้ตั้งค่า settings ใน GPO</p>
-<p><img alt="alt text" src="../image-32.png" /></p>
-<p><img alt="alt text" src="../image-33.png" /></p>
+<p>1. Copy ค่า Tenant ID และ Tenant name เพื่อนำไปใช้ใน GPO</p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-32.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-33.png" /></p>
 <p>2. สร้าง GPO และตั้งค่า settings ตาม <a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control#configure-client-side-registry-setting-for-scp">
 Configure client-side registry setting for SCP</a></p>
 <p>แล้ว link ไปที่ device OU ที่เราต้องการ enable Entra Hybrid Join ให้กับ device ภายใต้ OU นั้น</p>
-<p><img alt="alt text" src="../image-42.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-42.png" /></p>
 <p>3. ที่ Security Filtering ของ GPO</p>
 <ul>
 <li>ลบ Authenticated Users ออก (เพื่อไม่ให้ GPO apply เข้าหาทุกเครื่องภายใต้ OU)</li>
 <li>แล้วเพิ่ม pilot device group เข้าไป (เพื่อให้ GPO apply เข้าหาเครื่องที่อยู่ใน group นี้เท่านั้น)</li>
 </ul>
-<p><img alt="alt text" src="../image-34.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-34.png" /></p>
 <p>ที่ tab Delegation, ให้สิทธิ์ Read กับ Authenticated Users</p>
-<p><img alt="alt text" src="../image-35.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-35.png" /></p>
 <h2 id="3-configure-entra-connect-scopes-to-sync-device-objects-to-entra-id">3. Configure Entra Connect scopes to sync device objects to Entra ID</h2>
 <p>รีรัน Entra Connect</p>
-<p><img alt="alt text" src="../image-38.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-38.png" /></p>
 <p>แล้วเลือก OU ที่มี device ที่ต้องการ sync ไปยัง Entra ID</p>
-<p><img alt="alt text" src="../image-39.png" /></p>
-<p>ตอนนี้ เราตั้งค่าทุกอย่างของ targeted deployment ครบแล้ว ดังนั้นเราไปทดสอบ ทำ Entra Hybrid Join ให้กับ pilot device เครื่องแรกกันนะครับ</p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-39.png" /></p>
+<p>ตอนนี้ เราตั้งค่าสำหรับทำ targeted deployment ครบถ้วนแล้ว</p>
+<p>ดังนั้นเราไปทดลองทำ Entra Hybrid Join ให้กับ pilot device เครื่องแรกกันนะครับ</p>
 <h2 id="4-test-a-pilot-client">4. Test a pilot client</h2>
 <h3 id="41-move-a-pilot-device-to-a-synced-ou-add-to-the-pilot-device-group-and-restart-the-client">4.1 Move a pilot device to a synced OU, add to the pilot device group, and restart the client</h3>
 <p>1. ย้าย client มาอยู่ใน OU ที่ถูก sync ขึ้น Entra ID</p>
-<p><img alt="alt text" src="../image-31.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-31.png" /></p>
 <p>2. เพิ่ม client เข้าไปเป็นสมาชิกของ pilot device group</p>
-<p><img alt="alt text" src="../image-30.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-30.png" /></p>
 <p>3. แล้ว restart เครื่อง client เพื่อให้เครื่องได้รับ SID ของ group</p>
-<p><img alt="alt text" src="../image-16.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-16.png" /></p>
 <h3 id="42-nothing-to-do-just-wait-until-success">4.2 Nothing to do, just wait until success</h3>
 <p>เมื่อ restart กลับมา เราไม่ต้อง sign in ก็ได้นะครับ</p>
 <p>เพียงแค่รอเท่านั้น</p>
-<p>เพราะว่า client ทุกเครื่องจะมี scheduled task ชื่อว่า Automatic-Device-Join</p>
+<p>เพราะว่า client ทุกเครื่องจะมี scheduled task ชื่อว่า Automatic-Device-Join รันอยู่</p>
 <p>Task รันด้วย computer account (SYSTEM) ไม่ใช่ user account</p>
 <p>และต่อให้เราไม่ sign in เข้าเครื่อง task ก็จะรันทุกๆ 1 ชั่วโมงอยู่ดี</p>
-<p><img alt="alt text" src="../image-40.png" /></p>
-<p>เมื่อ task ทำงาน เขาจะค้นหาข้อมูลของ Tenant จากค่าใน registry (ที่ deploy ผ่าน GPO มา)</p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-40.png" /></p>
+<p>เมื่อเราปล่อยให้ task ทำงานด้วยตัวเอง เขาจะค้นหาข้อมูลของ tenant จากค่าใน registry (ที่ deploy ผ่าน GPO มา)</p>
 <p>เมื่อพบข้อมูลของ Tenant เขาจะ generate self-signed certificate ขึ้นมา แล้วส่งส่วนที่เป็น public key ไปแปะไว้ใน computer object ของตัวเองใน AD DS</p>
-<p><img alt="alt text" src="../image-43.png" /></p>
-<p>จากนั้น Entra Connect ที่ทำงานทุกๆ 30 นาที จะหา computer object ที่มีค่า userCertificate แล้ว sync computer object นั้นไปยัง Entra ID</p>
-<p>แต่เครื่องจะยังมี state เป็น Pending อยู่นะครับ</p>
-<p><img alt="alt text" src="../image-28.png" /></p>
-<p>แต่เราก็ไม่ต้องทำอะไรก็ได้ เราแค่รอต่อไป</p>
-<p>แล้วอีกไม่เกิน 1 ชั่วโมงถัดไป Automatic-Device-Join task ก็จะรันอีกครั้ง (รันทุกq 1 ชั่วโมง หรือเมื่อมี user sign in เข้าเครื่อง)</p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-43.png" /></p>
+<p>จากนั้นเมื่อ Entra Connect (ที่ทำงานทุกๆ 30 นาที) พบ computer object ที่มีค่า userCertificate ก็จะ sync computer object นั้นขึ้นไปยัง Entra ID</p>
+<p>อย่างไรก็ตาม เครื่องจะยังมี state เป็น Pending อยู่นะครับ</p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-28.png" /></p>
+<p>แต่เราก็ไม่ต้องทำอะไรก็ได้อีกเช่นกัน</p>
+<p>เราแค่รอต่อไป</p>
+<p>แล้วอีกไม่เกิน 1 ชั่วโมงถัดไป Automatic-Device-Join task ก็จะรันอีกครั้ง (รันทุกๆ 1 ชั่วโมง หรือเมื่อมี user sign in เข้าเครื่อง)</p>
 <p>แล้วเขาก็จะนำเครื่องเข้าไป authentication กับ Entra ID อีกครั้ง แล้วกลายเป็น Entra Hybrid joined device โดยสมบูรณ์ครับ</p>
-<p><img alt="alt text" src="../image-27.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-27.png" /></p>
 <h3 id="43-test-sso">4.3 Test SSO</h3>
-<p>เมื่อเครื่อง Entra Hybrid Join เข้า Entra ID โดยสมบูรณ์แล้ว</p>
+<p>เมื่อเครื่องเป็น Entra Hybrid join devices โดยสมบูรณ์แล้ว</p>
 <p>เราก็ลอง sign in เข้าเครื่อง</p>
-<p><img alt="alt text" src="../image-41.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-41.png" /></p>
 <p>ก็จะพบว่า ตอนนี้เราได้รับ Primary Refresh Token (PRT) (ดูที่ SSO State) แล้วนะครับ</p>
 <pre><code>dsregcmd /status
 </code></pre>
-<p><img alt="alt text" src="../image-25.png" /></p>
-<p>และ app บนเครื่องก็จะนำ PRT นี้ไปทำ SSO เข้าใช้งาน app หรือบริการิการต่างๆ  ที่ใช้ Entra ID เป็น identity provider ต่อไปครับ</p>
-<p><img alt="alt text" src="../image-26.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-25.png" /></p>
+<p>และ app บนเครื่องก็จะนำ PRT นี้ไปทำ SSO เข้าใช้งาน app หรือบริการต่างๆ  ที่ใช้ Entra ID เป็น identity provider ต่อไป</p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-26.png" /></p>
 <h2 id="5-optional-speed-up-the-process-by-forcing-the-scheduled-task">5. (Optional) Speed up the process by forcing the scheduled task</h2>
-<p>บางครั้ง ในการทดสอบ pilot device เราก็ไม่ค่อยอยากรอให้ Entra Hybrid Join process เสร็จสมบูรณ์ด้วยตัวของเขาเอง</p>
-<p>แต่เราอยากเร่งความเร็วของ process ให้เสร็จเร็วขึ้นแทน</p>
+<p>บางครั้ง ในการทดสอบ pilot device เราก็คงไม่อยากรอให้ Entra Hybrid Join process เสร็จสมบูรณ์ด้วยตัวของเขาเอง</p>
+<p>แต่เราอยากเร่งความเร็วของ process ให้เสร็จเร็วขึ้น</p>
 <p>ดังนั้น จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/device-registration-how-it-works#microsoft-entra-hybrid-joined-in-managed-environments">Microsoft Entra hybrid joined in Managed environments</a></p>
-<p><img alt="alt text" src="../image-44.png" /></p>
-<p>เราก็ลองเร่งความเร็วด้วยตัวเองดูเลยนะครับ</p>
-<p>1. Sign in เข้า Windows เพื่อ trigger ให้ Automatic-Device-Join task ถูก trigger ทำงานเลย</p>
-<p><img alt="alt text" src="../image-45.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-44.png" /></p>
+<p>เรามาลองเร่งความเร็วของ process ด้วยตัวเองดูนะครับ</p>
+<p>1. เริ่มจาก ไม่ต้องรอ ถ้าเครื่องได้รับ GPO แล้ว ให้เรา sign in เข้า Windows เพื่อ trigger ให้ Automatic-Device-Join task รันเลย</p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-45.png" /></p>
 <p>เครื่องจะ generate self-signed certificate แล้วส่งส่วนของ public key ไปแปะไว้ใน computer account ของตัวเองใน AD DS</p>
-<p><img alt="alt text" src="../image-46.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-46.png" /></p>
 <p>2. Entra Connect จะทำงานทุกๆ 30 นาที เพื่อ sync object ไปยัง Entra ID</p>
 <p>แต่ให้เรา force sync เลย ไม่ต้อรอ</p>
-<p><img alt="alt text" src="../image-37.png" /></p>
-<p>แล้ว client จะถูก sync ขึ้นไปที่ Entra ID แต่ยังเป็น Pending state อยู่</p>
-<p><img alt="alt text" src="../image-28.png" /></p>
-<p>3. แล้วเราก็ force Automatic-Device-Join task ให้รัน</p>
-<p>เพื่อให้เครื่องเข้าไปทำ authentication กับ Entra ID อีกครั้ง โดยไม่ต้องรอให้ task รันเองทุกๆ 1 ชั่วโมง</p>
-<p><img alt="alt text" src="../image-21.png" /></p>
-<p>แล้วเครื่องก็จะกลายเป็น Entra Hybrid joined device โดยสมบูรณ์ ในเวลาอันรวดเร็วตามที่เราต้องการครับ</p>
-<p><img alt="alt text" src="../image-27.png" /></p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-37.png" /></p>
+<p>แล้ว client จะถูก sync ไปยัง Entra ID แต่ state จะยังเป็น Pending อยู่</p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-28.png" /></p>
+<p>3. แล้วเราก็ force Automatic-Device-Join task บน device ให้รัน</p>
+<p>เพื่อนำเครื่องเข้าไปทำ authentication กับ Entra ID อีกครั้ง (โดยไม่ต้องรอให้ task รันเองทุกๆ 1 ชั่วโมง)</p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-21.png" /></p>
+<p>และเครื่องก็จะกลายเป็น Entra Hybrid joined device โดยสมบูรณ์ ในเวลาอันรวดเร็วตามที่เราต้องการครับ</p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-27.png" /></p>
 <h2 id="next-steps">Next steps</h2>
-<p>หลังจากทดสอบ targeted deployment แล้ว เราก็คงจะ</p>
+<p>หลังจากทดสอบ targeted deployment แล้ว เราก็จะ</p>
 <ul>
-<li>ทะยอยเพิ่มเครื่องเข้าไปใน pilot device group เพื่อทดสอบเพิ่มเติม</li>
-<li>Configure Entra Connect sync scopes เพื่อ sync computer object ของเครื่องเหล่านั้นขึ้นไปยัง Entra ID ด้วย</li>
+<li>ทยอยเพิ่มเครื่องเข้าไปใน pilot device group เพื่อทดสอบเพิ่มเติม</li>
+<li>และ configure Entra Connect sync scopes เพื่อ sync computer object ของเครื่องเหล่านั้นขึ้นไปยัง Entra ID ด้วย</li>
 </ul>
-<p>แล้วในที่สุดถ้ามั่นใจ่ว่า Entra Hybrid Join ไม่ส่งผลกระทบต่อการทำงานของเครื่อง client ส่วนใหญ่แล้ว เราก็อาจจะลบ GPO Entra Hybrid Join ออก</p>
-<p>แล้วรีรัน Entra Connect เพื่อสร้าง SCP ลงใน AD DS ให้กับทุกเครื่องที่ join domain ต่อไป ตาม <a href="https://learn.microsoft.com/en-us/entra/identity/devices/how-to-hybrid-join#managed-domains">Configure Microsoft Entra hybrid join</a> </p>
-<p><img alt="alt text" src="../image-36.png" /></p>
-<p>ตัวอย่าง SCP object ที่ถูกสร้างโดยการรีรัน Entra Connect ก็จะประมาณนี้นะครับ</p>
-<p><img alt="alt text" src="../image-47.png" /></p>
+<p>แล้วในที่สุดถ้าเรามั่นใจแล้วว่า Entra Hybrid Join ไม่ส่งผลกระทบต่อการทำงานของเครื่อง client ส่วนใหญ่ เราอาจจะลบ GPO Entra Hybrid Join ออก</p>
+<p>แล้วรีรัน Entra Connect เพื่อสร้าง SCP ลงใน AD DS ให้ทุกเครื่องที่ join domain เห็นต่อไป ตาม <a href="https://learn.microsoft.com/en-us/entra/identity/devices/how-to-hybrid-join#managed-domains">Configure Microsoft Entra hybrid join</a> </p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-36.png" /></p>
+<p>ซึ่งตัวอย่างของ SCP object ที่ถูกสร้างโดยการรีรัน Entra Connect ก็จะมีหน้าตาประมาณนี้นะครับ</p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-47.png" /></p>
 <p>...</p>
 
 
