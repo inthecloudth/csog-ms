@@ -1986,18 +1986,13 @@
 
 
 <h1 id="microsoft-entra-hybrid-join-targeted-deployment">Microsoft Entra hybrid join targeted deployment</h1>
-<p>ปัจจุบัน เครื่องคอมพิวเตอร์ส่วนใหญ่ยัง join on-premises AD DS อยู่ เราสามารถนำเขาไป join Entra ID โดยอัตโนมัติได้ด้วย enable Entra Hybrid Join</p>
+<p>ปัจจุบัน เครื่องคอมพิวเตอร์ส่วนใหญ่ยัง join on-premises AD DS อยู่ เราสามารถนำเขาไป join Entra ID โดยอัตโนมัติได้ด้วยการ enable Entra Hybrid Join</p>
 <p>แต่เรามี 2 ทางเลือก</p>
-<ul>
-<li>
-<p>ทางเลือกที่ 1: รีรัน Entra Connect เพื่อสร้าง SCP (Service Connection Point) object ลงใน on-premises AD DS ให้ทุกเครื่องที่ join domain มองเห็น แล้ว device จะใช้ข้อมูล tenant จาก SCP เข้าไปทำ Entra Hybrid Join ต่อไป ตาม <a href="https://learn.microsoft.com/en-us/entra/identity/devices/how-to-hybrid-join#managed-domains">Configure Microsoft Entra hybrid join</a> 
-<img alt="alt text" src="../../assets/ehj/250213/image-36.png" /></p>
-</li>
-<li>
-<p>ทางเลือกที่ 2: ทำให้ device แค่บางเครื่องรู้จักข้อมูลของ tenant ผ่าน GPO จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control">Microsoft Entra hybrid join targeted deployment</a></p>
-</li>
-</ul>
-<p>Entra Hybrid Join จะช่วยให้เครื่องที่ join on-premises AD DS มี identity ใน Entra ID และได้รับประโยชน์จาก SSO, สามารถเป็นสมาชิกของ device group เพื่อนำไป assign สิทธิ์อย่างอื่นต่อได้, ใช้ทำ device-based authentication ใน Condtional Access, และอื่นๆ เป็นต้น</p>
+<p>1. รีรัน Entra Connect เพื่อสร้าง SCP (Service Connection Point) object ลงใน AD DS ให้ทุกเครื่องที่ join domain มองเห็น</p>
+<p>แล้ว device จะใช้ข้อมูล tenant จาก SCP เข้าไปทำ Entra Hybrid Join ต่อไป ตาม <a href="https://learn.microsoft.com/en-us/entra/identity/devices/how-to-hybrid-join#managed-domains">Configure Microsoft Entra hybrid join</a> </p>
+<p><img alt="alt text" src="../../assets/ehj/250213/image-36.png" /></p>
+<p>หรือ 2. ทำให้ device แค่บางเครื่องรู้จักข้อมูลของ tenant ผ่าน GPO จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control">Microsoft Entra hybrid join targeted deployment</a></p>
+<p>Entra Hybrid Join จะช่วยให้เครื่องที่ join on-premises AD DS มี identity ใน Entra ID และได้รับประโยชน์จาก SSO, สามารถเป็นสมาชิกของ device group เพื่อนำไป assign สิทธิ์อย่างอื่นต่อได้, ใช้ทำ device-based authentication ใน Conditional Access, และอื่นๆ เป็นต้น</p>
 <p>และเนื่องจาก CSoG เราเน้นให้ทุกคนสามารถเริ่มต้นใช้งานบริการต่างๆ ด้วยตัวเองได้ โดยไม่กระทบกับระบบที่ใช้งานอยู่เป็นวงกว้าง</p>
 <p>ดังนั้น ในคู่มือนี้ จึงเป็นรายละเอียดของทางเลือกที่ 2 เพื่อทำ Entra Hybrid Join แบบ targeted deployment นะครับ</p>
 <h2 id="1-create-a-pilot-device-group">1. Create a pilot device group</h2>
