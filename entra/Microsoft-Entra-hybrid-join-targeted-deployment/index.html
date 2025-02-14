@@ -1296,36 +1296,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-optional-speed-up-the-process-by-forcing-the-scheduled-task" class="md-nav__link">
+  <a href="#5-optional-speed-up-the-process" class="md-nav__link">
     <span class="md-ellipsis">
-      5. (Optional) Speed up the process by forcing the scheduled task
+      5. (Optional) Speed up the process
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
-      สิ่งที่อาจทำต่อในอนาคต
+      Next steps
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#video" class="md-nav__link">
     <span class="md-ellipsis">
-      วิดีโอตัวอย่าง
+      Video
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#references" class="md-nav__link">
     <span class="md-ellipsis">
-      รายการอ้างอิง
+      References
     </span>
   </a>
   
@@ -1935,36 +1935,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-optional-speed-up-the-process-by-forcing-the-scheduled-task" class="md-nav__link">
+  <a href="#5-optional-speed-up-the-process" class="md-nav__link">
     <span class="md-ellipsis">
-      5. (Optional) Speed up the process by forcing the scheduled task
+      5. (Optional) Speed up the process
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
-      สิ่งที่อาจทำต่อในอนาคต
+      Next steps
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#video" class="md-nav__link">
     <span class="md-ellipsis">
-      วิดีโอตัวอย่าง
+      Video
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#references" class="md-nav__link">
     <span class="md-ellipsis">
-      รายการอ้างอิง
+      References
     </span>
   </a>
   
@@ -1990,7 +1990,7 @@
 <p>แต่เรามี 2 ทางเลือก</p>
 <ul>
 <li>
-<p>ทางเลือกที่ 1: รีรัน Entra Connect เพื่อสร้าง SCP (Service Connection Point) ลงใน AD DS ให้ทุกเครื่องที่ join domain มองเห็น แล้ว device จะใช้ข้อมูล tenant จาก SCP เข้าไปทำ Entra Hybrid Join ต่อไป ตาม <a href="https://learn.microsoft.com/en-us/entra/identity/devices/how-to-hybrid-join#managed-domains">Configure Microsoft Entra hybrid join</a> 
+<p>ทางเลือกที่ 1: รีรัน Entra Connect เพื่อสร้าง SCP (Service Connection Point) object ลงใน on-premises AD DS ให้ทุกเครื่องที่ join domain มองเห็น แล้ว device จะใช้ข้อมูล tenant จาก SCP เข้าไปทำ Entra Hybrid Join ต่อไป ตาม <a href="https://learn.microsoft.com/en-us/entra/identity/devices/how-to-hybrid-join#managed-domains">Configure Microsoft Entra hybrid join</a> 
 <img alt="alt text" src="../../assets/ehj/250213/image-36.png" /></p>
 </li>
 <li>
@@ -2062,7 +2062,7 @@ Configure client-side registry setting for SCP</a></p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-25.png" /></p>
 <p>และ app บนเครื่องก็จะนำ PRT นี้ไปทำ SSO เข้าใช้งาน app หรือบริการต่างๆ  ที่ใช้ Entra ID เป็น identity provider ต่อไป</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-26.png" /></p>
-<h2 id="5-optional-speed-up-the-process-by-forcing-the-scheduled-task">5. (Optional) Speed up the process by forcing the scheduled task</h2>
+<h2 id="5-optional-speed-up-the-process">5. (Optional) Speed up the process</h2>
 <p>บางครั้ง ในการทดสอบ pilot device เราก็คงไม่อยากรอให้ Entra Hybrid Join process เสร็จสมบูรณ์ด้วยตัวของเขาเอง</p>
 <p>แต่เราอยากเร่งความเร็วของ process ให้เสร็จเร็วขึ้น</p>
 <p>ดังนั้น จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/device-registration-how-it-works#microsoft-entra-hybrid-joined-in-managed-environments">Microsoft Entra hybrid joined in Managed environments</a></p>
@@ -2073,19 +2073,19 @@ Configure client-side registry setting for SCP</a></p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-45.png" /></p>
 <p>เครื่องจะ generate self-signed certificate แล้วส่งส่วนของ public key ไปแปะไว้ใน computer account ของตัวเองใน AD DS</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-46.png" /></p>
-<p>2. Manual force Entra Connect sync</p>
+<p>2. Force Entra Connect sync</p>
 <p>Entra Connect จะทำงานทุกๆ 30 นาที เพื่อ sync object ไปยัง Entra ID</p>
 <p>แต่ให้เรา force sync เลย ไม่ต้อรอ</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-37.png" /></p>
 <p>แล้ว client จะถูก sync ไปยัง Entra ID แต่ state จะยังเป็น Pending อยู่</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-28.png" /></p>
-<p>3. Manual force Automatic-Device-Join task</p>
-<p>แล้วเราก็ force Automatic-Device-Join task บน device ให้รัน</p>
-<p>เพื่อนำเครื่องเข้าไปทำ authentication กับ Entra ID อีกครั้ง (โดยไม่ต้องรอให้ task รันเองทุกๆ 1 ชั่วโมง)</p>
+<p>3. Manual รัน Automatic-Device-Join task</p>
+<p>แล้วเราก็ manual รัน Automatic-Device-Join task บน device (โดยไม่ต้องรอให้ task รันเองทุกๆ 1 ชั่วโมง)</p>
+<p>เพื่อนำเครื่องเข้าไปทำ authentication กับ Entra ID อีกครั้ง</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-21.png" /></p>
 <p>และเครื่องก็จะกลายเป็น Entra Hybrid joined device โดยสมบูรณ์ ในเวลาอันรวดเร็วตามที่เราต้องการครับ</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-27.png" /></p>
-<h2 id="_1">สิ่งที่อาจทำต่อในอนาคต</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>หลังจากทดสอบ targeted deployment แล้ว เราก็จะ</p>
 <ul>
 <li>ทยอยเพิ่มเครื่องเข้าไปใน pilot device group เพื่อทดสอบเพิ่มเติม</li>
@@ -2096,8 +2096,8 @@ Configure client-side registry setting for SCP</a></p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-36.png" /></p>
 <p>ซึ่งตัวอย่างของ SCP object ที่ถูกสร้างโดยการรีรัน Entra Connect ก็จะมีหน้าตาประมาณนี้นะครับ</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-47.png" /></p>
-<h2 id="_2">วิดีโอตัวอย่าง</h2>
-<h2 id="_3">รายการอ้างอิง</h2>
+<h2 id="video">Video</h2>
+<h2 id="references">References</h2>
 <ul>
 <li><a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control">Microsoft Entra hybrid join targeted deployment</a></li>
 <li><a href="https://learn.microsoft.com/en-us/entra/identity/devices/device-registration-how-it-works#microsoft-entra-hybrid-joined-in-managed-environments">Microsoft Entra hybrid joined in Managed environments</a></li>
