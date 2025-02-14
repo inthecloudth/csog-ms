@@ -1227,9 +1227,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-pilot-device-group" class="md-nav__link">
+  <a href="#1-create-a-pilot-device-group" class="md-nav__link">
     <span class="md-ellipsis">
-      1. สร้าง pilot device group
+      1. Create a pilot device group
     </span>
   </a>
   
@@ -1275,16 +1275,16 @@
           <li class="md-nav__item">
   <a href="#42-nothing-to-do-just-wait-until-success" class="md-nav__link">
     <span class="md-ellipsis">
-      4.2 รอNothing to do, just wait until success
+      4.2 Nothing to do, just wait until success
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-sso" class="md-nav__link">
+  <a href="#43-test-sso" class="md-nav__link">
     <span class="md-ellipsis">
-      4.3 ทดสอบ SSO
+      4.3 Test SSO
     </span>
   </a>
   
@@ -1296,9 +1296,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-optional-entra-hybrid-join" class="md-nav__link">
+  <a href="#5-optional-speed-up-the-process-by-forcing-the-scheduled-task" class="md-nav__link">
     <span class="md-ellipsis">
-      5. (Optional) หากต้องการเร่งความเร็ว Entra Hybrid Join
+      5. (Optional) Speed up the process by forcing the scheduled task
     </span>
   </a>
   
@@ -1866,9 +1866,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-pilot-device-group" class="md-nav__link">
+  <a href="#1-create-a-pilot-device-group" class="md-nav__link">
     <span class="md-ellipsis">
-      1. สร้าง pilot device group
+      1. Create a pilot device group
     </span>
   </a>
   
@@ -1914,16 +1914,16 @@
           <li class="md-nav__item">
   <a href="#42-nothing-to-do-just-wait-until-success" class="md-nav__link">
     <span class="md-ellipsis">
-      4.2 รอNothing to do, just wait until success
+      4.2 Nothing to do, just wait until success
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-sso" class="md-nav__link">
+  <a href="#43-test-sso" class="md-nav__link">
     <span class="md-ellipsis">
-      4.3 ทดสอบ SSO
+      4.3 Test SSO
     </span>
   </a>
   
@@ -1935,9 +1935,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-optional-entra-hybrid-join" class="md-nav__link">
+  <a href="#5-optional-speed-up-the-process-by-forcing-the-scheduled-task" class="md-nav__link">
     <span class="md-ellipsis">
-      5. (Optional) หากต้องการเร่งความเร็ว Entra Hybrid Join
+      5. (Optional) Speed up the process by forcing the scheduled task
     </span>
   </a>
   
@@ -2000,7 +2000,7 @@
 <p>Entra Hybrid Join จะช่วยให้เครื่องที่ join on-premises AD DS มี identity ใน Entra ID และได้รับประโยชน์จาก SSO, สามารถเป็นสมาชิกของ device group เพื่อนำไป assign สิทธิ์อย่างอื่นต่อได้, ใช้ทำ device-based authentication ใน Condtional Access, และอื่นๆ เป็นต้น</p>
 <p>และเนื่องจาก CSoG เราเน้นให้ทุกคนสามารถเริ่มต้นใช้งานบริการต่างๆ ด้วยตัวเองได้ โดยไม่กระทบกับระบบที่ใช้งานอยู่เป็นวงกว้าง</p>
 <p>ดังนั้น ในคู่มือนี้ จึงเป็นรายละเอียดของทางเลือกที่ 2 เพื่อทำ Entra Hybrid Join แบบ targeted deployment นะครับ</p>
-<h2 id="1-pilot-device-group">1. สร้าง pilot device group</h2>
+<h2 id="1-create-a-pilot-device-group">1. Create a pilot device group</h2>
 <p>สร้าง device group สำหรับ pilot Entra Hybrid Join</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-29.png" /></p>
 <h2 id="2-configure-gpo-settigs-to-enable-entra-hybrid-join-targeted-deployment">2. Configure GPO settigs to enable Entra Hybrid join targeted deployment</h2>
@@ -2034,7 +2034,7 @@ Configure client-side registry setting for SCP</a></p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-30.png" /></p>
 <p>3. แล้ว restart เครื่อง client เพื่อให้เครื่องได้รับ SID ของ group</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-16.png" /></p>
-<h3 id="42-nothing-to-do-just-wait-until-success">4.2 รอNothing to do, just wait until success</h3>
+<h3 id="42-nothing-to-do-just-wait-until-success">4.2 Nothing to do, just wait until success</h3>
 <p>เมื่อ restart กลับมา เราไม่ต้อง sign in ก็ได้นะครับ</p>
 <p>เพียงแค่รอเท่านั้น</p>
 <p>เพราะว่า client ทุกเครื่องจะมี scheduled task ชื่อว่า Automatic-Device-Join รันอยู่</p>
@@ -2052,7 +2052,7 @@ Configure client-side registry setting for SCP</a></p>
 <p>แล้วอีกไม่เกิน 1 ชั่วโมงถัดไป Automatic-Device-Join task ก็จะรันอีกครั้ง (รันทุกๆ 1 ชั่วโมง หรือเมื่อมี user sign in เข้าเครื่อง)</p>
 <p>แล้วเขาก็จะนำเครื่องเข้าไป authentication กับ Entra ID อีกครั้ง แล้วกลายเป็น Entra Hybrid joined device โดยสมบูรณ์ครับ</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-27.png" /></p>
-<h3 id="43-sso">4.3 ทดสอบ SSO</h3>
+<h3 id="43-test-sso">4.3 Test SSO</h3>
 <p>เมื่อเครื่องเป็น Entra Hybrid join devices โดยสมบูรณ์แล้ว</p>
 <p>เราก็ลอง sign in เข้าเครื่อง</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-41.png" /></p>
@@ -2062,7 +2062,7 @@ Configure client-side registry setting for SCP</a></p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-25.png" /></p>
 <p>และ app บนเครื่องก็จะนำ PRT นี้ไปทำ SSO เข้าใช้งาน app หรือบริการต่างๆ  ที่ใช้ Entra ID เป็น identity provider ต่อไป</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-26.png" /></p>
-<h2 id="5-optional-entra-hybrid-join">5. (Optional) หากต้องการเร่งความเร็ว Entra Hybrid Join</h2>
+<h2 id="5-optional-speed-up-the-process-by-forcing-the-scheduled-task">5. (Optional) Speed up the process by forcing the scheduled task</h2>
 <p>บางครั้ง ในการทดสอบ pilot device เราก็คงไม่อยากรอให้ Entra Hybrid Join process เสร็จสมบูรณ์ด้วยตัวของเขาเอง</p>
 <p>แต่เราอยากเร่งความเร็วของ process ให้เสร็จเร็วขึ้น</p>
 <p>ดังนั้น จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/device-registration-how-it-works#microsoft-entra-hybrid-joined-in-managed-environments">Microsoft Entra hybrid joined in Managed environments</a></p>
