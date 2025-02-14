@@ -1227,9 +1227,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-create-a-pilot-device-group" class="md-nav__link">
+  <a href="#1-pilot-device-group" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Create a pilot device group
+      1. สร้าง pilot device group
     </span>
   </a>
   
@@ -1275,16 +1275,16 @@
           <li class="md-nav__item">
   <a href="#42-nothing-to-do-just-wait-until-success" class="md-nav__link">
     <span class="md-ellipsis">
-      4.2 Nothing to do, just wait until success
+      4.2 รอNothing to do, just wait until success
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-test-sso" class="md-nav__link">
+  <a href="#43-sso" class="md-nav__link">
     <span class="md-ellipsis">
-      4.3 Test SSO
+      4.3 ทดสอบ SSO
     </span>
   </a>
   
@@ -1296,18 +1296,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-optional-speed-up-the-process-by-forcing-the-scheduled-task" class="md-nav__link">
+  <a href="#5-optional-entra-hybrid-join" class="md-nav__link">
     <span class="md-ellipsis">
-      5. (Optional) Speed up the process by forcing the scheduled task
+      5. (Optional) หากต้องการเร่งความเร็ว Entra Hybrid Join
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Next steps
+      สิ่งที่อาจทำต่อในอนาคต
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      วิดีโอตัวอย่าง
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      รายการอ้างอิง
     </span>
   </a>
   
@@ -1848,9 +1866,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-create-a-pilot-device-group" class="md-nav__link">
+  <a href="#1-pilot-device-group" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Create a pilot device group
+      1. สร้าง pilot device group
     </span>
   </a>
   
@@ -1896,16 +1914,16 @@
           <li class="md-nav__item">
   <a href="#42-nothing-to-do-just-wait-until-success" class="md-nav__link">
     <span class="md-ellipsis">
-      4.2 Nothing to do, just wait until success
+      4.2 รอNothing to do, just wait until success
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-test-sso" class="md-nav__link">
+  <a href="#43-sso" class="md-nav__link">
     <span class="md-ellipsis">
-      4.3 Test SSO
+      4.3 ทดสอบ SSO
     </span>
   </a>
   
@@ -1917,18 +1935,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-optional-speed-up-the-process-by-forcing-the-scheduled-task" class="md-nav__link">
+  <a href="#5-optional-entra-hybrid-join" class="md-nav__link">
     <span class="md-ellipsis">
-      5. (Optional) Speed up the process by forcing the scheduled task
+      5. (Optional) หากต้องการเร่งความเร็ว Entra Hybrid Join
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Next steps
+      สิ่งที่อาจทำต่อในอนาคต
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      วิดีโอตัวอย่าง
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      รายการอ้างอิง
     </span>
   </a>
   
@@ -1952,22 +1988,19 @@
 <h1 id="microsoft-entra-hybrid-join-targeted-deployment">Microsoft Entra hybrid join targeted deployment</h1>
 <p>ปัจจุบัน เครื่องคอมพิวเตอร์ส่วนใหญ่ยัง join on-premises AD DS อยู่ เราสามารถนำเขาไป join Entra ID โดยอัตโนมัติได้ด้วย enable Entra Hybrid Join</p>
 <p>แต่เรามี 2 ทางเลือก</p>
-<p><strong>ทางเลือกที่ 1</strong></p>
-<p>รีรัน Entra Connect เพื่อสร้าง Service Connection Point (SCP) ลงใน on-premises AD DS ให้ทุกเครื่องที่ join domain มองเห็น</p>
-<p>แล้ว device จะใช้ข้อมูล tenant จาก SCP เข้าไปทำ Entra Hybrid Join ต่อไป</p>
-<p><img alt="alt text" src="../../assets/ehj/250213/image-36.png" /></p>
-<p><strong>ทางเลือกที่ 2</strong></p>
-<p>ทำให้ device แค่บางเครื่องรู้จักข้อมูลของ tenant ผ่าน GPO จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control">Microsoft Entra hybrid join targeted deployment</a></p>
-<p>Entra Hybrid Join จะช่วยให้เครื่องที่ join on-premises AD DS มี identity ใน Entra ID และได้รับประโยชน์จาก</p>
 <ul>
-<li>SSO</li>
-<li>สามารถเป็นสมาชิกของ device group เพื่อนำไป assign สิทธิ์อย่างอื่นต่อได้</li>
-<li>ใช้ทำ device-based authentication ใน Condtional Access</li>
-<li>และอื่นๆ เป็นต้น</li>
+<li>
+<p>ทางเลือกที่ 1: รีรัน Entra Connect เพื่อสร้าง SCP (Service Connection Point) ลงใน AD DS ให้ทุกเครื่องที่ join domain มองเห็น แล้ว device จะใช้ข้อมูล tenant จาก SCP เข้าไปทำ Entra Hybrid Join ต่อไป ตาม <a href="https://learn.microsoft.com/en-us/entra/identity/devices/how-to-hybrid-join#managed-domains">Configure Microsoft Entra hybrid join</a> 
+<img alt="alt text" src="../../assets/ehj/250213/image-36.png" /></p>
+</li>
+<li>
+<p>ทางเลือกที่ 2: ทำให้ device แค่บางเครื่องรู้จักข้อมูลของ tenant ผ่าน GPO จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control">Microsoft Entra hybrid join targeted deployment</a></p>
+</li>
 </ul>
+<p>Entra Hybrid Join จะช่วยให้เครื่องที่ join on-premises AD DS มี identity ใน Entra ID และได้รับประโยชน์จาก SSO, สามารถเป็นสมาชิกของ device group เพื่อนำไป assign สิทธิ์อย่างอื่นต่อได้, ใช้ทำ device-based authentication ใน Condtional Access, และอื่นๆ เป็นต้น</p>
 <p>และเนื่องจาก CSoG เราเน้นให้ทุกคนสามารถเริ่มต้นใช้งานบริการต่างๆ ด้วยตัวเองได้ โดยไม่กระทบกับระบบที่ใช้งานอยู่เป็นวงกว้าง</p>
 <p>ดังนั้น ในคู่มือนี้ จึงเป็นรายละเอียดของทางเลือกที่ 2 เพื่อทำ Entra Hybrid Join แบบ targeted deployment นะครับ</p>
-<h2 id="1-create-a-pilot-device-group">1. Create a pilot device group</h2>
+<h2 id="1-pilot-device-group">1. สร้าง pilot device group</h2>
 <p>สร้าง device group สำหรับ pilot Entra Hybrid Join</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-29.png" /></p>
 <h2 id="2-configure-gpo-settigs-to-enable-entra-hybrid-join-targeted-deployment">2. Configure GPO settigs to enable Entra Hybrid join targeted deployment</h2>
@@ -2001,7 +2034,7 @@ Configure client-side registry setting for SCP</a></p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-30.png" /></p>
 <p>3. แล้ว restart เครื่อง client เพื่อให้เครื่องได้รับ SID ของ group</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-16.png" /></p>
-<h3 id="42-nothing-to-do-just-wait-until-success">4.2 Nothing to do, just wait until success</h3>
+<h3 id="42-nothing-to-do-just-wait-until-success">4.2 รอNothing to do, just wait until success</h3>
 <p>เมื่อ restart กลับมา เราไม่ต้อง sign in ก็ได้นะครับ</p>
 <p>เพียงแค่รอเท่านั้น</p>
 <p>เพราะว่า client ทุกเครื่องจะมี scheduled task ชื่อว่า Automatic-Device-Join รันอยู่</p>
@@ -2019,7 +2052,7 @@ Configure client-side registry setting for SCP</a></p>
 <p>แล้วอีกไม่เกิน 1 ชั่วโมงถัดไป Automatic-Device-Join task ก็จะรันอีกครั้ง (รันทุกๆ 1 ชั่วโมง หรือเมื่อมี user sign in เข้าเครื่อง)</p>
 <p>แล้วเขาก็จะนำเครื่องเข้าไป authentication กับ Entra ID อีกครั้ง แล้วกลายเป็น Entra Hybrid joined device โดยสมบูรณ์ครับ</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-27.png" /></p>
-<h3 id="43-test-sso">4.3 Test SSO</h3>
+<h3 id="43-sso">4.3 ทดสอบ SSO</h3>
 <p>เมื่อเครื่องเป็น Entra Hybrid join devices โดยสมบูรณ์แล้ว</p>
 <p>เราก็ลอง sign in เข้าเครื่อง</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-41.png" /></p>
@@ -2029,27 +2062,30 @@ Configure client-side registry setting for SCP</a></p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-25.png" /></p>
 <p>และ app บนเครื่องก็จะนำ PRT นี้ไปทำ SSO เข้าใช้งาน app หรือบริการต่างๆ  ที่ใช้ Entra ID เป็น identity provider ต่อไป</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-26.png" /></p>
-<h2 id="5-optional-speed-up-the-process-by-forcing-the-scheduled-task">5. (Optional) Speed up the process by forcing the scheduled task</h2>
+<h2 id="5-optional-entra-hybrid-join">5. (Optional) หากต้องการเร่งความเร็ว Entra Hybrid Join</h2>
 <p>บางครั้ง ในการทดสอบ pilot device เราก็คงไม่อยากรอให้ Entra Hybrid Join process เสร็จสมบูรณ์ด้วยตัวของเขาเอง</p>
 <p>แต่เราอยากเร่งความเร็วของ process ให้เสร็จเร็วขึ้น</p>
 <p>ดังนั้น จาก <a href="https://learn.microsoft.com/en-us/entra/identity/devices/device-registration-how-it-works#microsoft-entra-hybrid-joined-in-managed-environments">Microsoft Entra hybrid joined in Managed environments</a></p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-44.png" /></p>
 <p>เรามาลองเร่งความเร็วของ process ด้วยตัวเองดูนะครับ</p>
-<p>1. เริ่มจาก ไม่ต้องรอ ถ้าเครื่องได้รับ GPO แล้ว ให้เรา sign in เข้า Windows เพื่อ trigger ให้ Automatic-Device-Join task รันเลย</p>
+<p>1. Sign in เข้าเครื่อง</p>
+<p>เริ่มจาก ไม่ต้องรอ ถ้าเครื่องได้รับ GPO แล้ว ให้เรา sign in เข้า Windows เพื่อ trigger ให้ Automatic-Device-Join task รันเลย</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-45.png" /></p>
 <p>เครื่องจะ generate self-signed certificate แล้วส่งส่วนของ public key ไปแปะไว้ใน computer account ของตัวเองใน AD DS</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-46.png" /></p>
-<p>2. Entra Connect จะทำงานทุกๆ 30 นาที เพื่อ sync object ไปยัง Entra ID</p>
+<p>2. Manual force Entra Connect sync</p>
+<p>Entra Connect จะทำงานทุกๆ 30 นาที เพื่อ sync object ไปยัง Entra ID</p>
 <p>แต่ให้เรา force sync เลย ไม่ต้อรอ</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-37.png" /></p>
 <p>แล้ว client จะถูก sync ไปยัง Entra ID แต่ state จะยังเป็น Pending อยู่</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-28.png" /></p>
-<p>3. แล้วเราก็ force Automatic-Device-Join task บน device ให้รัน</p>
+<p>3. Manual force Automatic-Device-Join task</p>
+<p>แล้วเราก็ force Automatic-Device-Join task บน device ให้รัน</p>
 <p>เพื่อนำเครื่องเข้าไปทำ authentication กับ Entra ID อีกครั้ง (โดยไม่ต้องรอให้ task รันเองทุกๆ 1 ชั่วโมง)</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-21.png" /></p>
 <p>และเครื่องก็จะกลายเป็น Entra Hybrid joined device โดยสมบูรณ์ ในเวลาอันรวดเร็วตามที่เราต้องการครับ</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-27.png" /></p>
-<h2 id="next-steps">Next steps</h2>
+<h2 id="_1">สิ่งที่อาจทำต่อในอนาคต</h2>
 <p>หลังจากทดสอบ targeted deployment แล้ว เราก็จะ</p>
 <ul>
 <li>ทยอยเพิ่มเครื่องเข้าไปใน pilot device group เพื่อทดสอบเพิ่มเติม</li>
@@ -2060,7 +2096,14 @@ Configure client-side registry setting for SCP</a></p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-36.png" /></p>
 <p>ซึ่งตัวอย่างของ SCP object ที่ถูกสร้างโดยการรีรัน Entra Connect ก็จะมีหน้าตาประมาณนี้นะครับ</p>
 <p><img alt="alt text" src="../../assets/ehj/250213/image-47.png" /></p>
-<p>...</p>
+<h2 id="_2">วิดีโอตัวอย่าง</h2>
+<h2 id="_3">รายการอ้างอิง</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/entra/identity/devices/hybrid-join-control">Microsoft Entra hybrid join targeted deployment</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/identity/devices/device-registration-how-it-works#microsoft-entra-hybrid-joined-in-managed-environments">Microsoft Entra hybrid joined in Managed environments</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/identity/devices/how-to-hybrid-join#managed-domains">Configure Microsoft Entra hybrid join</a> 
+...</li>
+</ul>
 
 
 
